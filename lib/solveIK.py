@@ -67,7 +67,6 @@ class IK:
         must be sin(angle), where angle is the angle of rotation around this axis
         """
 
-        ## STUDENT CODE STARTS HERE
         displacement = np.zeros(3)
         axis = np.zeros(3)
 
@@ -92,7 +91,6 @@ class IK:
         axis = a_in0
         #print('a_inc', a_inc)
         #print('axis', axis.shape, axis)
-        ## END STUDENT CODE
 
         return displacement, axis
 
@@ -118,8 +116,6 @@ class IK:
 
 
         """
-
-        ## STUDENT CODE STARTS HERE
 
         distance = 0
         angle = 0
@@ -147,8 +143,6 @@ class IK:
         ##Find angle
         angle = abs(np.arccos(inner_function))
 
-        ## END STUDENT CODE
-
         return distance, angle
 
     def is_valid_solution(self,q,target):
@@ -167,8 +161,7 @@ class IK:
         angular tolerances of the target pose, and also respects the joint
         limits.
         """
-
-        ## STUDENT CODE STARTS HERE
+        
         success = False
 
         ##find actual end effector pose based on candidate solution (joint angles)
@@ -178,7 +171,6 @@ class IK:
         if(((self.lower < q).all() and (q < self.upper).all()) and (linear_diff < self.linear_tol) and (angular_diff < self.angular_tol)):
             success = True
 
-        ## END STUDENT CODE
 
         return success
 
@@ -201,8 +193,7 @@ class IK:
         dq - a desired joint velocity to perform this task, which will smoothly
         decay to zero magnitude as the task is achieved
         """
-
-        ## STUDENT CODE STARTS HERE
+        
         dq = np.zeros(7)
 
         ##find current frame end effector pose, T0e
@@ -216,7 +207,6 @@ class IK:
         ##and instead use IK.displacement_and_axis directly
         displacement, axis = IK.displacement_and_axis(target, T0e)
         dq = IK_velocity(q, displacement, axis)
-        ## END STUDENT CODE
 
         return dq
 
@@ -240,7 +230,6 @@ class IK:
         decay to zero magnitude as the task is achieved
         """
 
-        # THIS FUNCTION HAS BEEN FULLY IMPLEMENTED FOR YOU
 
         # normalize the offsets of all joints to range from -1 to 1 within the allowed range
         offset = 2 * (q - IK.center) / (IK.upper - IK.lower)
@@ -284,8 +273,6 @@ class IK:
             # Secondary Task - Center Joints
             dq_center = self.joint_centering_task(q)
 
-            ## STUDENT CODE STARTS HERE
-
             # Task Prioritization
             dq = np.zeros(7) # TODO: implement me!
             J = calcJacobian(q)
@@ -299,8 +286,6 @@ class IK:
             # Termination Conditions
             if((counter >= self.max_steps) or (np.linalg.norm(dq) < self.min_step_size)): # TODO: check termination conditions
                 break # exit the while loop if conditions are met!
-
-            ## END STUDENT CODE
 
             q = q + dq
             q = q.reshape(7,)
