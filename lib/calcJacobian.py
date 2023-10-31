@@ -95,7 +95,7 @@ class FK():
 
         T0e = H_80
         #print(jointPositions)
-        # Your code ends here
+
 
         H = np.zeros((9, 4, 4))
         H[0] = H_00
@@ -165,7 +165,7 @@ def calcJacobian(q):
 
 
 
-    ## STUDENT CODE GOES HERE
+
 
     return J
 
