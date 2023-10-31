@@ -103,7 +103,7 @@ class FK():
 
         T0e = H_80
         #print(jointPositions)
-        # Your code ends here
+
 
         H = np.zeros((9, 4, 4))
         H[0] = H_00
@@ -119,7 +119,7 @@ class FK():
 
         return jointPositions, T0e
 
-    # feel free to define additional helper methods to modularize your solution
+
 
 if __name__ == "__main__":
 
