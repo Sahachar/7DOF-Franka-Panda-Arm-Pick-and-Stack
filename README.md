@@ -15,4 +15,4 @@ roslaunch panda_gazebo panda_world.launch
 
 to launch the Gazebo simulation.
 
-Now you can use this repository in your catkin_ws/src and build again. Run the labs/final.py python file. All the required components of the solution like forward and inver kinematics, planning, optimization, obstacle avoidance are in the libs folder.
+Now you can use this repository in your catkin_ws/src and build. Run the labs/final.py python file. All the required components of the solution like forward and inver kinematics, planning, optimization, obstacle avoidance are in the libs folder.
